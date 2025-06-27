@@ -2,7 +2,13 @@ from flask import Flask, render_template, request
 import random
 
 app = Flask(__name__)
-from flask import send_from_directory
+from flask import Response
+
+@app.route('/sitemap.xml')
+def sitemap():
+    with open('sitemap.xml', 'r') as f:
+        xml_content = f.read()
+    return Response(xml_content, mimetype='application/xml')
 
 
 # Simple keyword-to-vibe mappings
