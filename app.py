@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import random
 
 app = Flask(__name__)
+from flask import send_from_directory
+
 
 # Simple keyword-to-vibe mappings
 vibes = {
@@ -168,3 +170,7 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(directory='.', path='sitemap.xml')
+
